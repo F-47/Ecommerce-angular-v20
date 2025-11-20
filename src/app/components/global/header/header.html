@@ -1,0 +1,52 @@
+<div class="bg-black text-center text-white py-4">
+  <p class="fade-down">Sign up and get 20% off to your first order.</p>
+</div>
+<header class="py-9 px-4 relative shadow">
+  <div class="container mx-auto flex items-center justify-between">
+    <a href="/" class="text-3xl font-bold tracking-wide">F47</a>
+    <div class="relative w-96 mx-auto">
+      <input
+        type="search"
+        placeholder="Search Products..."
+        id="searchInput"
+        [value]="search()"
+        (input)="updateSearch($event)"
+        class="w-full border border-gray-300 bg-gray-100 text-sm rounded-2xl px-3 py-2 placeholder:text-gray-400 focus:outline-none focus:ring focus:ring-gray-400"
+      />
+
+      <ul
+        class="absolute top-full left-0 w-full bg-white border border-gray-300 rounded-md mt-1 max-h-60 overflow-y-auto shadow-lg z-50"
+        [class]="search() ? 'block' : 'hidden'"
+      >
+        @for (product of filteredProducts(); track product.id) {
+
+        <li>
+          <a
+            [routerLink]="'/products/' + product.id"
+            class="px-3 py-2 hover:bg-gray-200 cursor-pointer flex items-center gap-x-4"
+          >
+            <img [src]="product.image" alt="{{ product.title }}" class="size-10 object-cover" />
+            <h2 class="line-clamp-1">{{ product.title }}</h2>
+          </a>
+        </li>
+        }
+      </ul>
+    </div>
+
+    <nav class="flex items-center gap-6">
+      <ul class="flex items-center gap-6 text-lg">
+        <li><a href="/" class="hover:text-gray-500">Home</a></li>
+        <li><a href="/products" class="hover:text-gray-500">Shop</a></li>
+      </ul>
+
+      <div class="flex items-center gap-5">
+        <div routerLink="/cart" class="relative cursor-pointer">
+          <lucide-angular name="ShoppingCart"></lucide-angular>
+          <div class="absolute -top-2 -right-2 bg-red-600 text-white text-xs px-2 rounded-full">
+            {{ cart.cart().length }}
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>

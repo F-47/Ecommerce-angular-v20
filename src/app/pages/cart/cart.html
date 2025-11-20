@@ -1,0 +1,46 @@
+<main class="container cart-page mx-auto">
+  <div class="cart-content">
+    <section class="cart-container">
+      <h2>Your Cart</h2>
+      <div class="cart-items">
+        @for (product of cart.cart(); track product.id){
+
+        <div class="cart-item">
+          <img [src]="product.image" alt="{{ product.title }}" />
+          <div class="item-details">
+            <a href="/product.html?id=${item.id}">
+              <h3>{{ product.title }}</h3>
+            </a>
+            <p class="price">${{ product.price }}</p>
+            <div class="quantity">
+              <button class="decrease">-</button>
+              <input type="number" value="${item.quantity}" min="1" />
+              <button class="increase">+</button>
+            </div>
+            <button class="remove" (click)="cart.removeFromCart(product.id)">Remove</button>
+          </div>
+        </div>
+        }
+      </div>
+    </section>
+
+    <aside class="cart-summary">
+      <h2>Order Summary</h2>
+      <div class="summary-line">
+        <span>Subtotal</span>
+        <span class="summary-subtotal">{{ subTotal() }}</span>
+      </div>
+      <div class="summary-line">
+        <span>Shipping</span>
+        <span class="summary-shipping">${{ shipping }}</span>
+      </div>
+      <div class="summary-line total">
+        <span>Total</span>
+        <span class="summary-total">${{ total() }}</span>
+      </div>
+      <div class="checkout-container">
+        <a href="./checkout.html" class="checkout-btn">Proceed to Checkout</a>
+      </div>
+    </aside>
+  </div>
+</main>

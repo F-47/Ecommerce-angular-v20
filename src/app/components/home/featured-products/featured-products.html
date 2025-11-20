@@ -1,0 +1,15 @@
+<section class="featured-products container mx-auto space-y-10">
+  <h1 class="text-3xl text-center font-bold">Featured Products</h1>
+  <div class="grid grid-cols-4 gap-10">
+    @for (product of featuredProducts(); track product.id){
+    <app-product-card [product]="product" />
+    }
+  </div>
+  <div class="flex items-center justify-center">
+    <a
+      href="/products"
+      class="border-2 border-black rounded-full text-black hover:bg-black hover:text-white transition-all duration-300 px-20 py-2"
+      >View All</a
+    >
+  </div>
+</section>

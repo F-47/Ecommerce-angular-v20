@@ -1,0 +1,14 @@
+<section class="categories container mx-auto mt-18 mb-20">
+  <h1 class="text-3xl text-center font-bold mb-10">Shop by Category</h1>
+
+  <div class="grid grid-cols-4 gap-5 mt-5">
+    @for (category of categories(); track category) {
+    <a
+      [href]="'/products?category=' + category"
+      class="category-card block bg-white rounded-xl p-5 text-center cursor-pointer shadow-md transition-all duration-300 hover:-translate-y-1 hover:bg-black hover:text-white"
+    >
+      <h3 class="uppercase font-black">{{ category }}</h3>
+    </a>
+    }
+  </div>
+</section>

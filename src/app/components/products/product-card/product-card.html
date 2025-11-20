@@ -1,0 +1,37 @@
+<div class="card w-full h-full shadow rounded">
+  <div class="image h-72 rounded overflow-hidden">
+    <a [href]="'/products/' + product().id">
+      <img
+        [src]="product().image"
+        class="w-full h-full object-contain transition-all duration-500 hover:scale-125"
+        alt="{{ product().title }}"
+      />
+    </a>
+  </div>
+  <div class="content flex flex-col justify-between p-6">
+    <div class="mb-5">
+      <a [href]="'/products/' + product().id" class="text-lg font-bold line-clamp-1">
+        {{ product().title }}</a
+      >
+      <div class="price text-gray-500 font-medium">
+        <span class="currency">$</span>
+        <span class="original-price">{{ product().price }}</span>
+      </div>
+    </div>
+    <z-button
+      (click)="cart.addToCart(product())"
+      class="bg-black w-full py-5 text-white rounded-lg font-medium"
+    >
+      Add to cart
+    </z-button>
+    <div class="reviews">
+      <span class="stars">
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+      </span>
+      <!-- <span class="review-count">(${item.rating.rate})</span> -->
+    </div>
+  </div>
+</div>
