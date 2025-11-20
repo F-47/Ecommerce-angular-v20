@@ -16,17 +16,13 @@
     "module": "preserve",
     "baseUrl": "./",
     "paths": {
-      "@shared/*": [
-        "src/app/shared/*"
-      ]
+      "@shared/*": ["src/app/shared/*"]
     }
   },
   "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "typeCheckHostBindings": true,
-    "strictTemplates": true
+    "enableTemplateControlFlow": true,
+    "enableTemplateStatementsInBindContext": true,
+    "enableTemplateOutputsInBindContext": true
   },
   "files": [],
   "references": [

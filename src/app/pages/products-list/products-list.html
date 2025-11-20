@@ -13,9 +13,13 @@
       </div>
     </div>
   </div>
+  @if (products().length > 0;) {
   <div class="grid grid-cols-4 gap-10">
     @for (product of products(); track product.id){
     <app-product-card [product]="product" />
     }
   </div>
+  }@else {
+  <z-loader zSize="lg"></z-loader>
+  }
 </main>

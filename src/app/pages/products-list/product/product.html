@@ -1,23 +1,19 @@
-<main *ngIf="product() as product" class="container mx-auto">
+<div class="container mx-auto h-screen">
+  @if (product(); as product) {
   <section class="product-details">
     <div class="images">
-      <div class="main-image">
-        <img [src]="product.image" [alt]="product.title" />
-      </div>
+      <div class="main-image"><img [src]="product.image" [alt]="product.title" /></div>
       <div class="thumbnails">
         <img [src]="product.image" alt="Thumbnail 1" />
         <img [src]="product.image" alt="Thumbnail 2" />
         <img [src]="product.image" alt="Thumbnail 3" />
       </div>
     </div>
-
-    <!-- Content -->
     <div class="content">
       <div class="category">
         <a routerLink="'/products'" class="category-link">{{ product.category }}</a>
       </div>
       <h1>{{ product.title }}</h1>
-
       <!-- Reviews -->
       <div class="reviews">
         <span class="stars">
@@ -25,17 +21,14 @@
         </span>
         <span class="review-count">({{ product.rating?.count || 0 }})</span>
       </div>
-
       <!-- Price -->
       <div class="price-container">
         <div class="price">${{ product.price }}</div>
         <div class="sale-price">${{ product.price * 1.2 | number : '1.2-2' }}</div>
         <div class="discount">-20%</div>
       </div>
-
       <!-- Description -->
       <p>{{ product.description }}</p>
-
       <!-- Actions -->
       <div class="actions">
         <div class="quantity">
@@ -43,20 +36,10 @@
           <!-- <input type="number" [value]="productQuantity || 1" min="1" /> -->
           <button class="increase">+</button>
         </div>
-
-        <!-- <button
-          class="add-to-cart"
-          [class.disabled]="alreadyInCart"
-          [disabled]="alreadyInCart"
-          (click)="addToCart(product)"
-        >
-          {{ alreadyInCart ? 'Already in Cart' : 'Add to Cart' }}
-        </button> -->
+        <!-- <button class="add-to-cart" [class.disabled]="alreadyInCart" [disabled]="alreadyInCart" (click)="addToCart(product)" > {{ alreadyInCart ? 'Already in Cart' : 'Add to Cart' }} </button> -->
       </div>
     </div>
   </section>
-
-  <!-- Newsletter -->
   <div class="newsletter">
     <h1>STAY UPTO DATE ABOUT OUR LATEST OFFERS</h1>
     <form>
@@ -67,4 +50,7 @@
       <button type="submit">Subscribe to Newsletter</button>
     </form>
   </div>
-</main>
+  } @else {
+  <z-loader zSize="lg"></z-loader>
+  }
+</div>

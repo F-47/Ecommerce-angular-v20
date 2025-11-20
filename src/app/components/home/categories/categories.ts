@@ -1,8 +1,9 @@
 import { Component, signal } from '@angular/core';
+import { ZardLoaderComponent } from '../../ui/loader/loader.component';
 
 @Component({
   selector: 'app-categories',
-  imports: [],
+  imports: [ZardLoaderComponent],
   templateUrl: './categories.html',
 })
 export class Categories {

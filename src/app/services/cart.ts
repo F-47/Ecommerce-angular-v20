@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class Cart {
-  cart = signal<TProduct[]>([]);
+  cart = signal<TProduct[]>(JSON.parse(localStorage.getItem('cartItems') || '[]'));
   router = inject(Router);
 
   addToCart(product: TProduct) {

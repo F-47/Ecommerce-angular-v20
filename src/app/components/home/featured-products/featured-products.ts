@@ -1,10 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { ProductCard } from '../../products/product-card/product-card';
 import { TProduct } from '../../../models/products';
+import { ZardLoaderComponent } from '../../ui/loader/loader.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-featured-products',
-  imports: [ProductCard],
+  imports: [ProductCard, ZardLoaderComponent, RouterLink],
   templateUrl: './featured-products.html',
 })
 export class FeaturedProducts {

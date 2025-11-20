@@ -2,12 +2,12 @@ import { Component, inject, signal } from '@angular/core';
 import { TProduct } from '../../../models/products';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ZardLoaderComponent } from 'src/app/components/ui/loader/loader.component';
 
 @Component({
   selector: 'app-product',
-  imports: [CommonModule],
+  imports: [CommonModule, ZardLoaderComponent],
   standalone: true,
-
   templateUrl: './product.html',
   styleUrl: './product.css',
 })
