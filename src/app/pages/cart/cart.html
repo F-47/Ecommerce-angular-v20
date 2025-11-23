@@ -18,23 +18,24 @@
       <div class="space-y-3 mb-5">
         <div class="flex items-center justify-between">
           <span class="font-semibold">Subtotal</span>
-          <span class="summary-subtotal">$ {{ cart.subTotal().toFixed(1) }}</span>
+          <span class="summary-subtotal">${{ cart.subTotal().toFixed(1) }}</span>
         </div>
         <div class="flex items-center justify-between">
           <span class="font-semibold">Shipping</span>
-          <span class="summary-shipping">$ {{ cart.shipping }} </span>
+          <span class="summary-shipping">${{ cart.shipping }} </span>
         </div>
         <div class="flex items-center justify-between total">
           <span class="font-semibold text-lg">Total</span>
-          <span class="font-bold text-lg">$ {{ cart.total().toFixed(1) }}</span>
+          <span class="font-bold text-lg">${{ cart.total().toFixed(1) }}</span>
         </div>
       </div>
       <div class="flex text-center">
-        <a
-          routerLink="/checkout"
-          class="bg-black w-full rounded py-3 font-semibold text-white cursor-pointer"
-          >Proceed to Checkout</a
+        <z-button
+          (click)="goToCheckout()"
+          class="bg-black w-full rounded py-7 text-base font-semibold text-white cursor-pointer disabled:bg-black/50 disabled:cursor-not-allowed"
         >
+          Proceed to Checkout
+        </z-button>
       </div>
     </aside>
   </div>

@@ -1,7 +1,8 @@
-import { Heart, ShoppingCart, Sparkles } from 'lucide-angular';
+import { Heart, Mail, ShoppingCart, Sparkles, Star } from 'lucide-angular';
 
 export const lucideIcons = {
   ShoppingCart,
-  Heart,
   Sparkles,
+  Star,
+  Mail,
 };

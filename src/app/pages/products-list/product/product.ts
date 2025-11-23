@@ -3,16 +3,19 @@ import { TCartItem, TProduct } from '../../../models/products';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ZardLoaderComponent } from 'src/app/components/ui/loader/loader.component';
+import { LucideAngularModule } from 'lucide-angular';
+import { Cart } from '../../../services/cart';
+import { ZardButtonComponent } from 'src/app/components/ui/button/button.component';
 
 @Component({
   selector: 'app-product',
-  imports: [CommonModule, ZardLoaderComponent],
+  imports: [CommonModule, ZardLoaderComponent, LucideAngularModule, ZardButtonComponent],
   standalone: true,
   templateUrl: './product.html',
-  styleUrl: './product.css',
 })
 export class Product {
   route = inject(ActivatedRoute);
+  cart = inject(Cart);
   product = signal<TCartItem | null>(null);
 
   async ngOnInit() {

@@ -1,8 +1,8 @@
 <div class="cart-item">
   <img [src]="product().image" alt="{{ product().title }}" />
   <div class="item-details">
-    <a [href]="'/product.html?id=' + product().id">
-      <h3>{{ product().title }}</h3>
+    <a [href]="'/products/' + product().id">
+      <h3 class="font-semibold">{{ product().title }}</h3>
     </a>
     <p class="price">${{ product().price }}</p>
     <div class="quantity">

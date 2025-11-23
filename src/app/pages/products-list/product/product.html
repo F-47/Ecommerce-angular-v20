@@ -1,53 +1,107 @@
-<div class="container mx-auto h-screen">
+<div class="container mx-auto min-h-screen px-4">
   @if (product(); as product) {
-  <section class="product-details">
-    <div class="images">
-      <div class="main-image"><img [src]="product.image" [alt]="product.title" /></div>
-      <div class="thumbnails">
-        <img [src]="product.image" alt="Thumbnail 1" />
-        <img [src]="product.image" alt="Thumbnail 2" />
-        <img [src]="product.image" alt="Thumbnail 3" />
+  <section class="relative grid gap-10 items-start my-10 md:grid-cols-2">
+    <div class="flex gap-4">
+      <div class="main-image">
+        <img
+          src="{{ product.image }}"
+          alt="{{ product.title }}"
+          class="w-full max-w-[350px] rounded-lg object-cover"
+        />
+      </div>
+      <div class="thumbnails flex flex-col gap-2">
+        <img
+          src="{{ product.image }}"
+          alt="Thumbnail 1"
+          class="w-[100px] h-[100px] object-cover rounded-lg cursor-pointer border-2 border-transparent hover:border-black hover:scale-105 transition-all duration-200"
+        />
+        <img
+          src="{{ product.image }}"
+          alt="Thumbnail 2"
+          class="w-[100px] h-[100px] object-cover rounded-lg cursor-pointer border-2 border-transparent hover:border-black hover:scale-105 transition-all duration-200"
+        />
+        <img
+          src="{{ product.image }}"
+          alt="Thumbnail 3"
+          class="w-[100px] h-[100px] object-cover rounded-lg cursor-pointer border-2 border-transparent hover:border-black hover:scale-105 transition-all duration-200"
+        />
       </div>
     </div>
     <div class="content">
-      <div class="category">
-        <a routerLink="'/products'" class="category-link">{{ product.category }}</a>
+      <div class="category mb-2">
+        <a
+          routerLink="/products"
+          class="text-black text-sm font-medium uppercase tracking-wider hover:underline"
+          >{{ product.category }}</a
+        >
       </div>
-      <h1>{{ product.title }}</h1>
-      <!-- Reviews -->
-      <div class="reviews">
-        <span class="stars">
-          <i class="fa-solid fa-star" *ngFor="let star of [1, 2, 3, 4, 5]"></i>
-        </span>
-        <span class="review-count">({{ product.rating?.count || 0 }})</span>
+
+      <h1 class="text-2xl md:text-xl font-bold mb-2">{{ product.title }}</h1>
+
+      <div class="reviews flex items-center gap-2 mb-4">
+        <lucide-angular name="Star" class="fill-yellow-400 text-yellow-400 size-5"></lucide-angular>
+        <span class="review-count text-gray-500 text-sm">({{ product.rating?.count }})</span>
       </div>
-      <!-- Price -->
-      <div class="price-container">
-        <div class="price">${{ product.price }}</div>
-        <div class="sale-price">${{ product.price * 1.2 | number : '1.2-2' }}</div>
-        <div class="discount">-20%</div>
-      </div>
-      <!-- Description -->
-      <p>{{ product.description }}</p>
-      <!-- Actions -->
-      <div class="actions">
-        <div class="quantity">
-          <button class="decrease">-</button>
-          <input type="number" [value]="productQuantity || 1" min="1" />
-          <button class="increase">+</button>
+
+      <div class="price-container flex items-center gap-3 mb-4">
+        <div class="price text-black font-bold text-lg">${{ product.price }}</div>
+        <div class="sale-price text-gray-400 text-base line-through">
+          ${{ product.price * 1.2 }}
         </div>
-        <!-- <button class="add-to-cart" [class.disabled]="alreadyInCart" [disabled]="alreadyInCart" (click)="addToCart(product)" > {{ alreadyInCart ? 'Already in Cart' : 'Add to Cart' }} </button> -->
+        <div class="discount text-red-600 font-semibold text-sm">-20%</div>
+      </div>
+
+      <p class="text-gray-700 leading-relaxed mb-5">{{ product.description }}</p>
+
+      <div class="actions flex items-center gap-4 mt-5">
+        <div class="quantity flex items-center border border-gray-300 rounded-md overflow-hidden">
+          <button class="w-9 h-10 bg-gray-100 text-black hover:bg-gray-200 transition-all">
+            -
+          </button>
+          <input
+            type="number"
+            [value]="productQuantity || 1"
+            min="1"
+            class="w-12 text-center border-none outline-none text-base"
+          />
+          <button class="w-9 h-10 bg-gray-100 text-black hover:bg-gray-200 transition-all">
+            +
+          </button>
+        </div>
+        <z-button
+          class="bg-black py-5 text-white flex-1 font-bold text-center"
+          (click)="cart.addToCart(product)"
+        >
+          {{ 'Add to Cart' }}
+        </z-button>
       </div>
     </div>
   </section>
-  <div class="newsletter">
-    <h1>STAY UPTO DATE ABOUT OUR LATEST OFFERS</h1>
-    <form>
-      <div class="email-container">
-        <i class="fa-solid fa-envelope"></i>
-        <input type="email" placeholder="Enter your email address" />
+
+  <div
+    class="newsletter flex flex-col md:flex-row items-center gap-5 bg-white border-2 border-primary rounded-2xl p-16 md:p-10 mb-10"
+  >
+    <h1 class="text-lg md:text-2xl sm:text-xl font-bold md:text-center flex-1">
+      STAY UPTO DATE ABOUT OUR LATEST OFFERS
+    </h1>
+    <form class="flex flex-col gap-4 flex-1 w-full">
+      <div class="relative w-full">
+        <lucide-angular
+          name="Mail"
+          class="absolute left-2 top-1/2 -translate-y-1/2"
+        ></lucide-angular>
+        <input
+          type="email"
+          placeholder="Enter your email address"
+          class="w-full ps-14 py-4 rounded-xl border-2 border-primary outline-none"
+        />
       </div>
-      <button type="submit">Subscribe to Newsletter</button>
+      <z-button
+        type="submit"
+        class="w-full py-6 text-lg rounded-xl border-2 border-primary font-bold bg-transparent hover:bg-black hover:text-white transition-all"
+      >
+        Subscribe to Newsletter
+      </z-button>
     </form>
   </div>
   } @else {
