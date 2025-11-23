@@ -10,3 +10,7 @@ export interface TProduct {
     count: number;
   };
 }
+
+export type TCartItem = TProduct & {
+  quantity: number;
+};

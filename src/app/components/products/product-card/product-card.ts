@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { TProduct } from '../../../models/products';
 import { Cart } from '../../../services/cart';
 import { ZardButtonComponent } from '../../ui/button/button.component';

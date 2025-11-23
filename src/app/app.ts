@@ -11,7 +11,7 @@ import { ZardToastComponent } from './components/ui/toast/toast.component';
   template: `
     <app-header />
     <router-outlet />
-    <z-toaster />
+    <z-toaster richColors />
     <app-footer />
   `,
   styles: [],

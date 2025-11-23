@@ -1,45 +1,40 @@
 <main class="container cart-page mx-auto">
   <div class="cart-content">
-    <section class="cart-container">
-      <h2>Your Cart</h2>
+    <section class="p-7 rounded-xl shadow">
+      <h2 class="mb-5 text-xl font-bold">Your Cart</h2>
+      @if (cart.cart().length > 0;) {
       <div class="cart-items">
         @for (product of cart.cart(); track product.id){
-
-        <div class="cart-item">
-          <img [src]="product.image" alt="{{ product.title }}" />
-          <div class="item-details">
-            <a href="/product.html?id=${item.id}">
-              <h3>{{ product.title }}</h3>
-            </a>
-            <p class="price">${{ product.price }}</p>
-            <div class="quantity">
-              <button class="decrease">-</button>
-              <input type="number" value="${item.quantity}" min="1" />
-              <button class="increase">+</button>
-            </div>
-            <button class="remove" (click)="cart.removeFromCart(product.id)">Remove</button>
-          </div>
-        </div>
+        <app-cart-item [product]="product" />
         }
       </div>
+      }@else{
+      <div class="text-gray-500">No Items in cart.</div>
+      }
     </section>
 
-    <aside class="cart-summary">
-      <h2>Order Summary</h2>
-      <div class="summary-line">
-        <span>Subtotal</span>
-        <span class="summary-subtotal">{{ subTotal() }}</span>
+    <aside class="p-7 rounded-xl shadow">
+      <h2 class="mb-5 text-xl font-bold">Order Summary</h2>
+      <div class="space-y-3 mb-5">
+        <div class="flex items-center justify-between">
+          <span class="font-semibold">Subtotal</span>
+          <span class="summary-subtotal">$ {{ cart.subTotal().toFixed(1) }}</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="font-semibold">Shipping</span>
+          <span class="summary-shipping">$ {{ cart.shipping }} </span>
+        </div>
+        <div class="flex items-center justify-between total">
+          <span class="font-semibold text-lg">Total</span>
+          <span class="font-bold text-lg">$ {{ cart.total().toFixed(1) }}</span>
+        </div>
       </div>
-      <div class="summary-line">
-        <span>Shipping</span>
-        <span class="summary-shipping">${{ shipping }}</span>
-      </div>
-      <div class="summary-line total">
-        <span>Total</span>
-        <span class="summary-total">${{ total() }}</span>
-      </div>
-      <div class="checkout-container">
-        <a href="./checkout.html" class="checkout-btn">Proceed to Checkout</a>
+      <div class="flex text-center">
+        <a
+          routerLink="/checkout"
+          class="bg-black w-full rounded py-3 font-semibold text-white cursor-pointer"
+          >Proceed to Checkout</a
+        >
       </div>
     </aside>
   </div>

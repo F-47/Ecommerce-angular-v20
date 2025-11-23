@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { TProduct } from '../../../models/products';
+import { TCartItem, TProduct } from '../../../models/products';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ZardLoaderComponent } from 'src/app/components/ui/loader/loader.component';
@@ -13,7 +13,7 @@ import { ZardLoaderComponent } from 'src/app/components/ui/loader/loader.compone
 })
 export class Product {
   route = inject(ActivatedRoute);
-  product = signal<TProduct | null>(null);
+  product = signal<TCartItem | null>(null);
 
   async ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
